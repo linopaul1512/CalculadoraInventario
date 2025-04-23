@@ -8,9 +8,6 @@ class Aplication:
         self.ventana = tk.Tk()
         self.ventana.title("Clasificación ABC Extendida")
         self.ventana.geometry("1000x600")
-        #nombres: harina, jugo, papel, cebolla, jamon, queso, pan, tequeños, frescolita, malta, 7up, jabon, papas, toddy, doritos, nucita, chocolate,  cambur, cereal
-        # vector demanda:  80,514,19,2442,650,128,2500,4,25,2232,2,1,6,12,101,715,1,35,1
-        #vector costo: 422,54.07,0.65,16.11,4.61,0.63,1.2,22.05,5.01,2.48,4.78,38.03,9.01,25.89,59.5,20.78,2.93,1,28.88
 
         # Entradas de usuario
         tk.Label(self.ventana, text="Demanda anual (uso), separado por comas:").pack()
@@ -27,8 +24,12 @@ class Aplication:
 
         tk.Button(self.ventana, text="Calcular clasificación ABC", command=self.calcular_abc).pack(pady=10)
 
-        # Tabla 
-        columnas = ("Producto", "Uso anual (A)", "Costo Unitario (B)", "valor de Uso (C)", "Uso Anual del Dinero (D)", "Total Acomulado(E)", "Clasificación")
+          #nombres: harina, jugo, papel, cebolla, jamon, queso, pan, tequeños, frescolita, malta, 7up, jabon, papas, toddy, doritos, nucita, chocolate,  cambur, cereal
+        # vector demanda:  80,514,19,2442,650,128,2500,4,25,2232,2,1,6,12,101,715,1,35,1
+        #vector costo: 422,54.07,0.65,16.11,4.61,0.63,1.2,22.05,5.01,2.48,4.78,38.03,9.01,25.89,59.5,20.78,2.93,1,28.88
+
+        # Tabla extendida
+        columnas = ("Producto", "A", "B", "C", "D", "E", "Clasificación")
         self.tree = ttk.Treeview(self.ventana, columns=columnas, show='headings')
         for col in columnas:
             self.tree.heading(col, text=col)
@@ -50,7 +51,6 @@ class Aplication:
             # Cálculo de valores
             valores_uso = [d * c for d, c in zip(demanda, costos)]
             total_valor_uso = sum(valores_uso)
-            print("total valor de uso", total_valor_uso )
 
             # % uso anual del dinero (D)
             porcentajes = [(v * 100) / total_valor_uso for v in valores_uso]
