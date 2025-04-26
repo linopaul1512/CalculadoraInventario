@@ -62,7 +62,7 @@ class Aplication:
             # % acumulado y clasificación
             acumulado = 0
             datos_finales = []
-
+            # 80 15 5
             for nombre, uso, costo, valor, porcentaje in datos:
                 acumulado += porcentaje
                 if acumulado <= 80:
@@ -88,7 +88,7 @@ class Aplication:
 
     def mostrar_grafico(self, datos):
         productos = [d[0] for d in datos]
-        acumulados = [d[5] for d in datos]
+        acumulados = [d[4] for d in datos]
 
         plt.figure(figsize=(10, 5))
         plt.plot(productos, acumulados, marker='o')
